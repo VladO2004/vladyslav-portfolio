@@ -4,6 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vladyslav Opatskyy | Project Portfolio</title>
+
+<script>
+(function () {
+  // Start the portfolio at the top even if the browser restores an old scroll
+  // position or an old link still includes #projects.
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  function startAtTop() {
+    var hash = window.location.hash;
+
+    if (hash === '#projects') {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search);
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    if (!hash) {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  window.addEventListener('load', startAtTop);
+  window.addEventListener('pageshow', startAtTop);
+})();
+</script>
   <style>
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
